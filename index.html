@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grido Viñedos — Heladería Artesanal</title>
+<meta name="description" content="Grido Viñedos — Helados artesanales, postres y promos. Pedí por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #D62828;
+    --rojo-oscuro: #9D1B1B;
+    --azul: #1D3557;
+    --azul-claro: #457B9D;
+    --crema: #FFF8F0;
+    --blanco: #FFFFFF;
+    --texto: #1A1A1A;
+    --shadow: 0 10px 40px rgba(29, 53, 87, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--texto);
+    background: var(--crema);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; line-height: 1.1; font-weight: 900; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255, 248, 240, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    border-bottom: 2px solid var(--rojo);
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--rojo);
+    font-style: italic;
+  }
+  .logo span { color: var(--azul); font-style: normal; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--rojo); }
+  .menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--azul); cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 5% 3rem;
+    background: linear-gradient(135deg, var(--crema) 0%, #fff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(214, 40, 40, 0.15), transparent 70%);
+    top: -200px; right: -200px;
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(29, 53, 87, 0.1), transparent 70%);
+    bottom: -150px; left: -150px;
+    border-radius: 50%;
+  }
+  .hero-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1s ease;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: var(--azul);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin-bottom: 1.5rem;
+    color: var(--azul);
+  }
+  .hero h1 em { color: var(--rojo); font-style: italic; }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #555;
+    max-width: 550px;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--rojo);
+    color: white;
+    box-shadow: 0 4px 20px rgba(214, 40, 40, 0.4);
+  }
+  .btn-primary:hover {
+    background: var(--rojo-oscuro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(214, 40, 40, 0.5);
+  }
+  .btn-secondary {
+    background: white;
+    color: var(--azul);
+    border: 2px solid var(--azul);
+  }
+  .btn-secondary:hover {
+    background: var(--azul);
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECCIONES */
+  section { padding: 6rem 5%; }
+  .section-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: var(--azul);
+  }
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  /* SABORES */
+  .sabores { background: white; }
+  .grid-sabores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .sabor-card {
+    background: var(--crema);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.4s;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .sabor-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--rojo);
+    box-shadow: var(--shadow);
+  }
+  .sabor-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .sabor-card h3 {
+    color: var(--azul);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .sabor-card p { color: #666; font-size: 0.9rem; }
+
+  /* PROMOS */
+  .promos {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-claro) 100%);
+    color: white;
+    position: relative;
+  }
+  .promos .section-title { color: white; }
+  .promos .section-subtitle { color: rgba(255,255,255,0.8); }
+  .grid-promos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .promo-card {
+    background: white;
+    color: var(--texto);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .promo-card:hover { transform: scale(1.03); }
+  .promo-card .precio {
+    background: var(--rojo);
+    color: white;
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .promo-card h3 { color: var(--azul); margin-bottom: 0.8rem; font-size: 1.5rem; }
+  .promo-card p { color: #666; margin-bottom: 1.5rem; }
+  .promo-card .precio-grande {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--rojo);
+  }
+
+  /* PEDIDOS WHATSAPP */
+  .pedidos {
+    background: var(--crema);
+    text-align: center;
+  }
+  .pedidos-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    border-top: 6px solid var(--rojo);
+  }
+  .pedidos-box .icono { font-size: 4rem; margin-bottom: 1rem; }
+  .pedidos-box h2 { color: var(--azul); margin-bottom: 1rem; }
+  .pedidos-box p { color: #666; margin-bottom: 2rem; font-size: 1.1rem; }
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1.2rem 2.5rem;
+  }
+  .btn-whatsapp:hover { background: #1ea952; transform: translateY(-3px); }
+
+  /* GALERIA */
+  .galeria { background: white; }
+  .grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .galeria-item {
+    aspect-ratio: 1;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--rojo), var(--azul));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    transition: transform 0.4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .galeria-item:hover { transform: scale(1.05); }
+  .galeria-item:nth-child(2) { background: linear-gradient(135deg, #f093fb, var(--rojo)); }
+  .galeria-item:nth-child(3) { background: linear-gradient(135deg, var(--azul-claro), #a8e6cf); }
+  .galeria-item:nth-child(4) { background: linear-gradient(135deg, #ffd89b, var(--rojo)); }
+  .galeria-item:nth-child(5) { background: linear-gradient(135deg, var(--azul), #c471f5); }
+  .galeria-item:nth-child(6) { background: linear-gradient(135deg, #ff9a9e, var(--azul-claro)); }
+
+  /* UBICACION */
+  .ubicacion {
+    background: linear-gradient(135deg, var(--crema) 0%, #fff 100%);
+  }
+  .ubicacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .ubicacion-info h2 { color: var(--azul); margin-bottom: 1.5rem; font-size: 2.5rem; }
+  .info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+  .info-item .icono {
+    background: var(--rojo);
+    color: white;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+  .info-item h4 { color: var(--azul); margin-bottom: 0.3rem; }
+  .info-item p { color: #555; }
+  .mapa-box {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-left: 6px solid var(--rojo);
+  }
+  .mapa-box .icono-grande { font-size: 5rem; color: var(--azul); }
+  .mapa-box h3 { color: var(--azul); margin: 1rem 0; }
+  .mapa-box p { color: #666; margin-bottom: 1.5rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--azul);
+    color: white;
+    padding: 3rem 5% 1.5rem;
+    text-align: center;
+  }
+  footer .logo-footer {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  footer .logo-footer span { color: var(--rojo); font-style: normal; }
+  footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  footer .social a {
+    background: rgba(255,255,255,0.1);
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-size: 1.2rem;
+  }
+  footer .social a:hover { background: var(--rojo); }
+  footer .copy {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* BOTÓN WHATSAPP FLOTANTE */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: #25D366;
+    color: white;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    z-index: 99;
+    transition: transform 0.3s;
+    animation: pulse 2s infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+    50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.8); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .menu-btn { display: block; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: white;
+      flex-direction: column;
+      padding: 1rem;
+      border-top: 1px solid #eee;
+    }
+    .nav-links.show { display: flex; }
+    .ubicacion-grid { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 4rem 5%; }
+    .hero { padding-top: 8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Grido <span>Viñedos</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#sabores">Sabores</a></li>
+    <li><a href="#promos">Promos</a></li>
+    <li><a href="#pedidos">Pedidos</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+  </ul>
+  <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <span class="badge">🍦 Heladería Artesanal</span>
+    <h1>El sabor que <em>te enamora</em> en cada cucharada</h1>
+    <p>Helados cremosos, postres irresistibles y la mejor calidad. Bienvenidos a Grido Viñedos, tu lugar para endulzar el día.</p>
+    <div class="btn-group">
+      <a href="#pedidos" class="btn btn-primary">Pedí ahora 🚀</a>
+      <a href="#sabores" class="btn btn-secondary">Ver sabores</a>
+    </div>
+  </div>
+</section>
+
+<!-- SABORES -->
+<section class="sabores" id="sabores">
+  <h2 class="section-title">Nuestros Sabores</h2>
+  <p class="section-subtitle">Una variedad para todos los gustos, hechos con ingredientes seleccionados.</p>
+  <div class="grid-sabores">
+    <div class="sabor-card">
+      <span class="sabor-emoji">🍫</span>
+      <h3>Chocolate Suizo</h3>
+      <p>Intenso y cremoso, con trocitos de chocolate.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🍓</span>
+      <h3>Frutilla a la Crema</h3>
+      <p>Frutillas frescas con un toque de crema.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🥛</span>
+      <h3>Dulce de Leche</h3>
+      <p>El clásico, hecho artesanalmente.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🍦</span>
+      <h3>Crema Americana</h3>
+      <p>Suave, tradicional y siempre delicioso.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🥜</span>
+      <h3>Granizado</h3>
+      <p>Crema con trocitos de chocolate crujiente.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🍋</span>
+      <h3>Limón</h3>
+      <p>Refrescante y perfecto para el verano.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🍒</span>
+      <h3>Frutos del Bosque</h3>
+      <p>Mezcla de frutos rojos con sabor único.</p>
+    </div>
+    <div class="sabor-card">
+      <span class="sabor-emoji">🥥</span>
+      <h3>Coco</h3>
+      <p>Tropical, cremoso y suave al paladar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOS -->
+<section class="promos" id="promos">
+  <h2 class="section-title">Promos del Mes</h2>
+  <p class="section-subtitle">Próximamente publicaremos nuestras mejores ofertas. ¡Seguinos para enterarte primero!</p>
+  <div class="grid-promos">
+    <div class="promo-card">
+      <span class="precio">🔥 PRÓXIMAMENTE</span>
+      <h3>Kilo Familiar</h3>
+      <p>1kg de helado a elección. Ideal para compartir en familia.</p>
+      <div class="precio-grande">S/ --</div>
+    </div>
+    <div class="promo-card">
+      <span class="precio">⭐ PRÓXIMAMENTE</span>
+      <h3>Combo Pareja</h3>
+      <p>Medio kilo + 2 conos. Perfecto para una salida.</p>
+      <div class="precio-grande">S/ --</div>
+    </div>
+    <div class="promo-card">
+      <span class="precio">🎉 PRÓXIMAMENTE</span>
+      <h3>Postre del Día</h3>
+      <p>Postre especial con helado, salsa y toppings.</p>
+      <div class="precio-grande">S/ --</div>
+    </div>
+  </div>
+</section>
+
+<!-- PEDIDOS -->
+<section class="pedidos" id="pedidos">
+  <div class="pedidos-box">
+    <div class="icono">📱</div>
+    <h2 class="section-title">Pedí por WhatsApp</h2>
+    <p>Hacé tu pedido en segundos y te lo preparamos enseguida. También podés consultar sabores, promos o coordinar delivery.</p>
+    <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" class="btn btn-whatsapp">
+      💬 Pedir ahora por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria">
+  <h2 class="section-title">Galería</h2>
+  <p class="section-subtitle">Un vistazo a nuestros helados, postres y momentos únicos.</p>
+  <div class="grid-galeria">
+    <div class="galeria-item">🍦</div>
+    <div class="galeria-item">🍨</div>
+    <div class="galeria-item">🍧</div>
+    <div class="galeria-item">🧁</div>
+    <div class="galeria-item">🍰</div>
+    <div class="galeria-item">🍫</div>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<section class="ubicacion" id="ubicacion">
+  <div class="ubicacion-grid">
+    <div class="ubicacion-info">
+      <h2>Visitanos</h2>
+      <div class="info-item">
+        <div class="icono">📍</div>
+        <div>
+          <h4>Dirección</h4>
+          <p>Calle Teniente José Bolognesi Coloma N° 107 - 109</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="icono">📞</div>
+        <div>
+          <h4>WhatsApp</h4>
+          <p>+51 942 760 895</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="icono">🕐</div>
+        <div>
+          <h4>Horarios</h4>
+          <p>Domingo a Jueves: 11:00 a 22:00 hs<br>Viernes y Sábado: 11:00 a 23:00 hs</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="icono">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p>gridovinedos@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="mapa-box">
+      <div class="icono-grande">🗺️</div>
+      <h3>Encontranos fácil</h3>
+      <p>Estamos esperándote con los mejores helados.</p>
+      <a href="https://maps.google.com/?q=Calle+Teniente+Jose+Bolognesi+Coloma+107+Lima" target="_blank" class="btn btn-primary">Ver en Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo-footer">Grido <span>Viñedos</span></div>
+  <p>Heladería artesanal · El sabor que te enamora</p>
+  <div class="social">
+    <a href="#" title="Instagram">📷</a>
+    <a href="#" title="Facebook">📘</a>
+    <a href="https://wa.me/51942760895" title="WhatsApp">💬</a>
+  </div>
+  <div class="copy">
+    © 2026 Grido Viñedos. Todos los derechos reservados.
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/51942760895?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" class="whatsapp-float" title="Pedí por WhatsApp">💬</a>
+
+<script>
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('show');
+    });
+  });
+</script>
+
+</body>
+</html>
