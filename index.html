@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grido Viñedos — Heladería en Lima | Helados, Postres y Tortas</title>
-<meta name="description" content="Grido Viñedos, tu heladería en Lima. Helados, palitos, tortas, bombones, postres y el nuevo alfajor Cookies and Cream. Pedí por WhatsApp.">
-<meta name="keywords" content="grido, grido viñedos, helados lima, heladería viñedos, grido perú, helados peru, lúcuma, alfajor cookies and cream">
+<title>Grido Viñedos — Heladería en Lima | Helados, Tortas y Postres</title>
+<meta name="description" content="Grido Viñedos, tu heladería en Lima. Helados por kilo, tortas heladas, palitos, bombones, postres y el nuevo alfajor Cookies and Cream. Pide por WhatsApp.">
+<meta name="keywords" content="grido, grido viñedos, helados lima, heladería viñedos, grido perú, helados peru, lúcuma, chocolate dubai, alfajor cookies and cream">
 <meta name="theme-color" content="#134385">
 
-<!-- Open Graph para WhatsApp/Facebook -->
 <meta property="og:title" content="Grido Viñedos — Heladería en Lima">
-<meta property="og:description" content="Helados, palitos, tortas y postres Grido. Pedí por WhatsApp.">
+<meta property="og:description" content="Helados, palitos, tortas y postres Grido. Pide por WhatsApp.">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,11 +22,15 @@
     --azul-oscuro: #0d2f5e;
     --rojo-grido: #E63946;
     --rojo-oscuro: #c1121f;
+    --rosa: #FFB6C1;
+    --rosa-oscuro: #E91E63;
+    --amarillo: #FFD23F;
     --blanco: #FFFFFF;
     --crema: #FFF8F0;
     --gris-claro: #F4F6FA;
     --texto: #1A1A1A;
     --shadow: 0 10px 40px rgba(19, 67, 133, 0.15);
+    --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,17 +50,14 @@
     font-weight: 700;
   }
 
-  /* LOGO SVG inline */
+  /* LOGO SVG */
   .logo-grido {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
   }
-  .logo-grido svg {
-    width: 50px;
-    height: 50px;
-  }
+  .logo-grido svg { width: 50px; height: 50px; }
   .logo-grido .nombre {
     font-family: 'Fredoka', sans-serif;
     font-weight: 700;
@@ -83,12 +83,12 @@
     z-index: 100;
     box-shadow: 0 2px 20px rgba(0,0,0,0.08);
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
   .nav-links a {
     color: var(--azul-grido);
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: color 0.3s;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -147,7 +147,7 @@
     color: white;
   }
   .hero h1 .destacado {
-    color: #FFD23F;
+    color: var(--amarillo);
     display: inline-block;
     position: relative;
   }
@@ -195,7 +195,7 @@
     color: var(--azul-grido);
   }
   .btn-secondary:hover {
-    background: #FFD23F;
+    background: var(--amarillo);
     transform: translateY(-3px);
   }
 
@@ -205,11 +205,11 @@
   }
 
   /* SECCIONES */
-  section { padding: 6rem 5%; }
+  section { padding: 5rem 5%; }
   .section-title {
     text-align: center;
     font-size: clamp(2rem, 4vw, 3.5rem);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--azul-grido);
   }
   .section-subtitle {
@@ -217,54 +217,353 @@
     color: #666;
     font-size: 1.1rem;
     max-width: 600px;
-    margin: 0 auto 4rem;
+    margin: 0 auto 3rem;
+  }
+
+  /* CATEGORIAS NAVEGACIÓN */
+  .categorias-nav {
+    background: var(--gris-claro);
+    padding: 3rem 5% 0;
+    position: sticky;
+    top: 75px;
+    z-index: 50;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  .categorias-tabs {
+    display: flex;
+    gap: 0.8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+  }
+  .cat-tab {
+    padding: 0.8rem 1.5rem;
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--azul-grido);
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cat-tab:hover { border-color: var(--rojo-grido); }
+  .cat-tab.active {
+    background: var(--azul-grido);
+    color: white;
   }
 
   /* PRODUCTOS */
-  .productos { background: var(--gris-claro); }
+  .productos { background: var(--gris-claro); padding-top: 2rem; }
+  .categoria-bloque {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    display: none;
+  }
+  .categoria-bloque.active { display: block; }
+  .categoria-titulo {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--azul-grido);
+    font-size: 2rem;
+  }
+  .categoria-desc {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
   }
   .producto-card {
     background: white;
     border-radius: 20px;
-    padding: 2rem 1.5rem;
-    text-align: center;
+    padding: 0;
+    overflow: hidden;
     transition: all 0.4s;
     border: 3px solid transparent;
     position: relative;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
   }
   .producto-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     border-color: var(--rojo-grido);
     box-shadow: var(--shadow);
   }
-  .producto-emoji {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    display: block;
+  .producto-imagen {
+    height: 200px;
+    background: linear-gradient(135deg, var(--gris-claro), white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .producto-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .producto-card:hover .producto-imagen img {
+    transform: scale(1.08);
+  }
+  .producto-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .producto-card h3 {
     color: var(--azul-grido);
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
-  .producto-card p { color: #666; font-size: 0.95rem; }
-  .producto-card.nuevo::before {
-    content: 'NUEVO';
+  .producto-card .descripcion {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+  .producto-card .precio {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--rojo-grido);
+    margin-bottom: 1rem;
+  }
+  .producto-card .precio small {
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 400;
+    display: block;
+    margin-top: -3px;
+  }
+  .producto-card .btn-pedir {
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .producto-card .btn-pedir:hover {
+    background: #1ea952;
+    transform: scale(1.03);
+  }
+  .producto-card .solo-local {
+    background: var(--gris-claro);
+    color: var(--azul-grido);
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: 2px dashed var(--rojo-grido);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .badge-nuevo, .badge-popular {
     position: absolute;
-    top: 15px; right: 15px;
+    top: 12px; right: 12px;
     background: var(--rojo-grido);
     color: white;
-    padding: 0.2rem 0.7rem;
+    padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.7rem;
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+  .badge-popular { background: var(--amarillo); color: var(--azul-oscuro); }
+
+  /* PROMOS - Estilo Mayo Rosa */
+  .promos {
+    background: linear-gradient(135deg, #FFE5EC 0%, #FFB6C1 50%, #FF8FA3 100%);
+    color: var(--texto);
+    position: relative;
+    overflow: hidden;
+  }
+  .promos::before {
+    content: '❤️';
+    position: absolute;
+    font-size: 8rem;
+    top: 5%; left: 3%;
+    opacity: 0.15;
+    transform: rotate(-15deg);
+  }
+  .promos::after {
+    content: '❤️';
+    position: absolute;
+    font-size: 10rem;
+    bottom: 5%; right: 3%;
+    opacity: 0.15;
+    transform: rotate(20deg);
+  }
+  .promos .section-title {
+    color: var(--rosa-oscuro);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-shadow: 2px 2px 0 white;
+  }
+  .promos .section-subtitle {
+    color: var(--azul-oscuro);
+    font-weight: 700;
+  }
+  .promos-titulo-decorado {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .promos-titulo-decorado .subtitulo-promo {
+    font-family: 'Fredoka', sans-serif;
+    font-style: italic;
+    color: var(--rosa-oscuro);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  .grid-promos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .promo-card {
+    background: white;
+    color: var(--texto);
+    border-radius: 25px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    transition: transform 0.3s;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.2);
+  }
+  .promo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--rosa-oscuro), var(--rojo-grido));
+  }
+  .promo-card:hover { transform: scale(1.03); }
+  .promo-card .icono-promo { font-size: 3.5rem; margin-bottom: 0.5rem; height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .promo-card .icono-promo img { max-height: 90px; max-width: 100%; object-fit: contain; border-radius: 10px; }
+  .promo-card .etiqueta {
+    background: var(--rosa-oscuro);
+    color: white;
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 30px;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .promo-card h3 {
+    color: var(--azul-grido);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+  .promo-card .porciones {
+    color: #888;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .promo-card .precio-grande {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+    margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+  .promo-card .precio-grande small {
+    font-size: 1.2rem;
+    vertical-align: top;
+  }
+  .promo-card .ahorra {
+    background: var(--rojo-grido);
+    color: white;
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .promo-card .btn-promo {
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+  }
+  .promo-card .btn-promo:hover {
+    background: #1ea952;
+    transform: scale(1.05);
+  }
+  .promo-precio-irresistible {
+    background: white;
+    color: var(--rosa-oscuro);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    display: inline-block;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 2rem auto;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+    transform: rotate(-3deg);
+  }
+  .promos-vigencia {
+    background: white;
+    color: var(--rosa-oscuro);
+    padding: 1.2rem 2rem;
+    border-radius: 15px;
+    max-width: 700px;
+    margin: 3rem auto 0;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
   }
 
   /* SABORES */
@@ -288,7 +587,7 @@
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
   }
-  .tab:hover { background: #FFD23F; }
+  .tab:hover { background: var(--amarillo); }
   .tab.active {
     background: var(--azul-grido);
     color: white;
@@ -297,16 +596,13 @@
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
   }
   .sabor-item {
     background: var(--gris-claro);
-    padding: 1.2rem 1.5rem;
+    padding: 1.3rem 1.5rem;
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
     transition: all 0.3s;
     border-left: 4px solid var(--rojo-grido);
   }
@@ -315,62 +611,36 @@
     box-shadow: var(--shadow);
     transform: translateX(5px);
   }
-  .sabor-item .emoji { font-size: 1.8rem; }
-  .sabor-item .nombre { font-weight: 700; color: var(--azul-grido); }
-  .grupo-sabores { display: none; }
-  .grupo-sabores.active { display: grid; }
-
-  /* PROMOS */
-  .promos {
-    background: linear-gradient(135deg, var(--azul-grido) 0%, var(--azul-oscuro) 100%);
-    color: white;
-  }
-  .promos .section-title { color: white; }
-  .promos .section-subtitle { color: rgba(255,255,255,0.85); }
-  .grid-promos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .promo-card {
-    background: white;
-    color: var(--texto);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    position: relative;
-    transition: transform 0.3s;
-    overflow: hidden;
-  }
-  .promo-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    background: var(--rojo-grido);
-  }
-  .promo-card:hover { transform: scale(1.03); }
-  .promo-card .etiqueta {
-    background: var(--rojo-grido);
-    color: white;
-    display: inline-block;
-    padding: 0.3rem 1rem;
-    border-radius: 30px;
+  .sabor-item .nombre {
     font-weight: 800;
-    margin-bottom: 1rem;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    color: var(--azul-grido);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .sabor-item .descripcion {
+    color: #666;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+  .sabor-item.nuevo {
+    border-left-color: var(--amarillo);
+    background: linear-gradient(135deg, #fff8e1, var(--gris-claro));
+  }
+  .sabor-item.nuevo .nombre::after {
+    content: 'NUEVO';
+    background: var(--rojo-grido);
+    color: white;
+    padding: 0.15rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    margin-left: 0.5rem;
+    vertical-align: middle;
     letter-spacing: 0.5px;
   }
-  .promo-card h3 { color: var(--azul-grido); margin-bottom: 0.8rem; font-size: 1.5rem; }
-  .promo-card p { color: #666; margin-bottom: 1.5rem; }
-  .promo-card .precio-grande {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--rojo-grido);
-  }
+  .grupo-sabores { display: none; }
+  .grupo-sabores.active { display: grid; }
 
   /* PEDIDOS */
   .pedidos {
@@ -406,35 +676,62 @@
   }
   .btn-whatsapp:hover { background: #1ea952; transform: translateY(-3px); }
 
-  /* GALERIA */
-  .galeria { background: white; }
-  .grid-galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  /* Delivery Apps */
+  .delivery-apps {
+    margin-top: 2.5rem;
+    text-align: center;
   }
-  .galeria-item {
-    aspect-ratio: 1;
-    border-radius: 20px;
+  .delivery-apps-titulo {
+    font-size: 1rem;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 5rem;
-    transition: transform 0.4s;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    color: white;
+    gap: 0.7rem;
+    opacity: 0.95;
   }
-  .galeria-item:hover { transform: scale(1.05); }
-  .galeria-item:nth-child(1) { background: linear-gradient(135deg, var(--azul-grido), var(--rojo-grido)); }
-  .galeria-item:nth-child(2) { background: linear-gradient(135deg, #FFD23F, var(--rojo-grido)); }
-  .galeria-item:nth-child(3) { background: linear-gradient(135deg, var(--azul-grido), #FFD23F); }
-  .galeria-item:nth-child(4) { background: linear-gradient(135deg, var(--rojo-grido), var(--azul-oscuro)); }
-  .galeria-item:nth-child(5) { background: linear-gradient(135deg, #FFD23F, var(--azul-grido)); }
-  .galeria-item:nth-child(6) { background: linear-gradient(135deg, var(--azul-oscuro), var(--rojo-grido)); }
+  .delivery-apps-titulo::before,
+  .delivery-apps-titulo::after {
+    content: '';
+    height: 2px;
+    width: 35px;
+    background: white;
+    opacity: 0.4;
+  }
+  .delivery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn-delivery {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  .btn-delivery:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+  .btn-rappi {
+    background: linear-gradient(135deg, #FF3B30, #E0271C);
+  }
+  .btn-pedidosya {
+    background: linear-gradient(135deg, #FA0046, #C40037);
+  }
+  .btn-delivery-icon {
+    font-size: 1.3rem;
+  }
 
   /* UBICACION */
   .ubicacion {
@@ -485,10 +782,7 @@
     padding: 3rem 5% 1.5rem;
     text-align: center;
   }
-  footer .logo-footer-svg {
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
+  footer .logo-footer-svg { margin-bottom: 1rem; display: inline-block; }
   footer .nombre-footer {
     font-family: 'Fredoka', sans-serif;
     font-size: 1.8rem;
@@ -562,6 +856,7 @@
     .hero { padding-top: 8rem; }
     .logo-grido svg { width: 40px; height: 40px; }
     .logo-grido .nombre { font-size: 1.1rem; }
+    .categorias-nav { top: 70px; padding: 1.5rem 5% 0; }
   }
 </style>
 </head>
@@ -583,8 +878,8 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#productos">Productos</a></li>
-    <li><a href="#sabores">Sabores</a></li>
     <li><a href="#promos">Promos</a></li>
+    <li><a href="#sabores">Sabores</a></li>
     <li><a href="#ubicacion">Ubicación</a></li>
   </ul>
   <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
@@ -593,68 +888,597 @@
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-content">
-    <span class="badge">🍦 Heladería Grido</span>
+    <span class="badge">🍦 Heladería Grido en Lima</span>
     <h1>Más momentos <span class="destacado">felices</span> en cada cucharada</h1>
-    <p>Bienvenidos a Grido Viñedos. Helados, palitos, tortas, bombones y postres elaborados con la mejor calidad para vos y tu familia.</p>
+    <p>Bienvenidos a Grido Viñedos. Helados por kilo, tortas heladas, palitos, bombones y postres elaborados con la mejor calidad para ti y tu familia.</p>
     <div class="btn-group">
-      <a href="#pedidos" class="btn btn-primary">Pedí ahora 🚀</a>
-      <a href="#productos" class="btn btn-secondary">Ver productos</a>
+      <a href="#productos" class="btn btn-primary">Ver productos 🍦</a>
+      <a href="#promos" class="btn btn-secondary">Ver promos 🔥</a>
     </div>
   </div>
 </section>
 
+<!-- CATEGORIAS NAV -->
+<div class="categorias-nav">
+  <div class="categorias-tabs">
+    <button class="cat-tab active" onclick="mostrarCategoria('helados-kilo', this)">🍨 Helados por Kilo</button>
+    <button class="cat-tab" onclick="mostrarCategoria('tentacion', this)">🍦 Barquillos</button>
+    <button class="cat-tab" onclick="mostrarCategoria('tortas', this)">🎂 Tortas Heladas</button>
+    <button class="cat-tab" onclick="mostrarCategoria('palitos', this)">🍡 Palitos</button>
+    <button class="cat-tab" onclick="mostrarCategoria('bombones', this)">🍫 Bombones</button>
+    <button class="cat-tab" onclick="mostrarCategoria('postres', this)">🍮 Postres</button>
+    <button class="cat-tab" onclick="mostrarCategoria('especiales-prod', this)">⭐ Especiales</button>
+    <button class="cat-tab" onclick="mostrarCategoria('lanzamientos', this)">✨ Lanzamientos</button>
+  </div>
+</div>
+
 <!-- PRODUCTOS -->
 <section class="productos" id="productos">
-  <h2 class="section-title">Nuestros Productos</h2>
-  <p class="section-subtitle">Una variedad pensada para cada momento del día.</p>
-  <div class="grid-productos">
-    <div class="producto-card">
-      <span class="producto-emoji">🍦</span>
-      <h3>Tentación</h3>
-      <p>El clásico cono con tu sabor favorito.</p>
+
+  <!-- HELADOS POR KILO -->
+  <div class="categoria-bloque active" id="helados-kilo">
+    <h2 class="categoria-titulo">🍨 Helados por Kilo</h2>
+    <p class="categoria-desc">Helado para llevar en cantidades familiares. Elige tus sabores favoritos y comparte en casa.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://cdn.cuponidad.pe/images/Deals/heladode2sabores-170.webp" alt="1 Kilo Familiar"><span class="badge-popular">MÁS VENDIDO</span></div>
+        <div class="producto-info">
+          <h3>1 Kilo Familiar</h3>
+          <p class="descripcion">1 kg de helado con 4 sabores a elección. Ideal para compartir en familia.</p>
+          <div class="precio">S/ 29.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20pedir%201%20kilo%20de%20helado" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://cdn.cuponidad.pe/images/Deals/heladode2sabores-170.webp" alt="1/2 Kilo"></div>
+        <div class="producto-info">
+          <h3>1/2 Kilo</h3>
+          <p class="descripcion">Medio kilo de helado con 3 sabores a elección. Perfecto para una pareja o salida.</p>
+          <div class="precio">S/ 17.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20pedir%201%2F2%20kilo%20de%20helado" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2023/09/Pote-cuarto-e1695663801591.png" alt="1/4 Kilo"></div>
+        <div class="producto-info">
+          <h3>1/4 Kilo</h3>
+          <p class="descripcion">Cuarto kilo con 2 sabores a elección. Una porción justa para disfrutar.</p>
+          <div class="precio">S/ 10.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20pedir%201%2F4%20kilo%20de%20helado" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2019/10/CR-AMERICANA.png" alt="Pote 1 Litro Tentación"></div>
+        <div class="producto-info">
+          <h3>Pote 1 Litro Tentación</h3>
+          <p class="descripcion">Pote de 1 litro de helado Tentación, disponible en 11 variedades: Chocolate, Chocolate con almendras, Crema americana, Crema cookie, Vainilla, Menta granizada, Dulce de leche, Dulce de leche granizado, Frutilla, Granizado y Limón.</p>
+          <div class="precio">S/ 18.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20pedir%20un%20pote%20Tentación%20de%201L" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/09/familiar3lt-4.jpg" alt="Pote Familiar 3 Litros"><span class="badge-popular">FAMILIAR</span></div>
+        <div class="producto-info">
+          <h3>Pote Familiar 3 Litros</h3>
+          <p class="descripcion">Pote familiar de 3 litros con 4 variedades a elegir: N1 (Crema americana, chocolate y dulce de leche), N2 (Dulce de leche granizado, crema americana y frutilla), N3 (Crema granizada, frutilla y vainilla), N4 (Vainilla, dulce de leche granizado y chocolate).</p>
+          <div class="precio">S/ 39.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20pedir%20un%20pote%20familiar%20de%203L" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card">
-      <span class="producto-emoji">🍡</span>
-      <h3>Palitos</h3>
-      <p>Refrescantes y prácticos para llevar.</p>
+  </div>
+
+  <!-- BARQUILLOS -->
+  <div class="categoria-bloque" id="tentacion">
+    <h2 class="categoria-titulo">🍦 Barquillos</h2>
+    <p class="categoria-desc">Nuestros cucuruchos crocantes con tu sabor favorito. Desde 1 bola hasta 3, hay para todos los antojos.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-mini-gigante.jpg" alt="Mini Gigante"></div>
+        <div class="producto-info">
+          <h3>Mini Gigante</h3>
+          <p class="descripcion">Barquillo con 1 bola de helado. Ideal para un antojo rápido.</p>
+          <div class="precio">S/ 5.00</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2017/09/cucurucho-gigante-2-bochas.jpg" alt="Gigante 2 Bolas"><span class="badge-popular">CLÁSICO</span></div>
+        <div class="producto-info">
+          <h3>Gigante 2 Bolas</h3>
+          <p class="descripcion">Barquillo con 2 bolas de helado a elección. El favorito de siempre.</p>
+          <div class="precio">S/ 8.50</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-grido.jpg" alt="Barquillo Grido 2 Bolas"></div>
+        <div class="producto-info">
+          <h3>Barquillo Grido 2 Bolas</h3>
+          <p class="descripcion">Barquillo Grido con 2 bolas de helado. Barquillo con chocolate y maní al inicio del cono.</p>
+          <div class="precio">S/ 9.50</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-gigante3bochas.jpg" alt="Gigante 3 Bolas"></div>
+        <div class="producto-info">
+          <h3>Gigante 3 Bolas</h3>
+          <p class="descripcion">Barquillo Gigante con 3 bolas de helado a elección. Para los más golosos.</p>
+          <div class="precio">S/ 10.00</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-maxigrido.jpg" alt="Maxi Grido"></div>
+        <div class="producto-info">
+          <h3>Maxi Grido</h3>
+          <p class="descripcion">Barquillo Grido versión XL con 3 bolas de helado. Doble felicidad en cada mordida.</p>
+          <div class="precio">S/ 11.50</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card">
-      <span class="producto-emoji">🥡</span>
-      <h3>Familiar</h3>
-      <p>1/2 kg y 1 kg para compartir en casa.</p>
+  </div>
+
+  <!-- TORTAS -->
+  <div class="categoria-bloque" id="tortas">
+    <h2 class="categoria-titulo">🎂 Tortas Heladas</h2>
+    <p class="categoria-desc">Tortas para 12 porciones, perfectas para cumpleaños y celebraciones. Recomendamos reservar con 24h de anticipación.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2019/10/Torta-Grido360X360.jpg" alt="Torta Grido"></div>
+        <div class="producto-info">
+          <h3>Torta Grido</h3>
+          <p class="descripcion">Torta con helado de chocolate, dulce de leche y crema americana, rellena con dulce de leche y decorada con salsa de chocolate. 12 porciones.</p>
+          <div class="precio">S/ 36.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20reservar%20la%20Torta%20Grido" target="_blank" class="btn-pedir">💬 Reservar por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2019/10/Torta-Oreo360X360.jpg" alt="Torta Cookies and Cream"></div>
+        <div class="producto-info">
+          <h3>Torta Cookies and Cream</h3>
+          <p class="descripcion">Torta con helado de crema americana, con corazón de dulce de leche y galletitas. 12 porciones.</p>
+          <div class="precio">S/ 36.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20reservar%20la%20Torta%20Cookies%20and%20Cream" target="_blank" class="btn-pedir">💬 Reservar por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card">
-      <span class="producto-emoji">🎂</span>
-      <h3>Tortas Heladas</h3>
-      <p>Para celebrar cumpleaños y ocasiones especiales.</p>
+  </div>
+
+  <!-- PALITOS -->
+  <div class="categoria-bloque" id="palitos">
+    <h2 class="categoria-titulo">🍡 Palitos Helados</h2>
+    <p class="categoria-desc">Refrescantes y prácticos para llevar a cualquier lado. Disponibles por unidad o en caja x20.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitofrutal-frutilla.jpg" alt="Palito Frutal Frutilla"></div>
+        <div class="producto-info">
+          <h3>Palito Frutal Frutilla</h3>
+          <p class="descripcion">Palito helado de agua de frutilla con pulpa de frutilla. 1 unidad.</p>
+          <div class="precio">S/ 1.50 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Frutal%20Frutilla" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitofrutal-limon.jpg" alt="Palito Frutal Limón"></div>
+        <div class="producto-info">
+          <h3>Palito Frutal Limón</h3>
+          <p class="descripcion">Palito helado de agua de limón con jugo natural exprimido. 1 unidad.</p>
+          <div class="precio">S/ 1.50 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Frutal%20Limón" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2024/02/Palito-Naranja_Peru-2.png" alt="Palito Frutal Naranja"></div>
+        <div class="producto-info">
+          <h3>Palito Frutal Naranja</h3>
+          <p class="descripcion">Palito helado de agua de naranja con jugo natural exprimido. 1 unidad.</p>
+          <div class="precio">S/ 1.50 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Frutal%20Naranja" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitofrutal-frutilla.jpg" alt="Caja Palitos Frutales"></div>
+        <div class="producto-info">
+          <h3>Caja Palitos Frutales x 20</h3>
+          <p class="descripcion">Caja de 20 unidades de palitos frutales (frutilla, limón o naranja). Sabor a elección.</p>
+          <div class="precio">S/ 22.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20palitos%20frutales%20x20" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitocremoso-frutilla.jpg" alt="Palito Cremoso Frutilla"></div>
+        <div class="producto-info">
+          <h3>Palito Cremoso Frutilla</h3>
+          <p class="descripcion">Palito de crema helada de frutilla con pulpa de frutilla. Cremoso y delicioso. 1 unidad.</p>
+          <div class="precio">S/ 2.00 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Cremoso%20Frutilla" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitocremoso-americana.jpg" alt="Palito Cremoso Americana"></div>
+        <div class="producto-info">
+          <h3>Palito Cremoso Americana</h3>
+          <p class="descripcion">Palito de crema helada sabor chantilly. Suave y cremoso. 1 unidad.</p>
+          <div class="precio">S/ 2.00 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Cremoso%20Americana" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palitocremoso-frutilla.jpg" alt="Caja Palitos Cremosos"></div>
+        <div class="producto-info">
+          <h3>Caja Palitos Cremosos x 10</h3>
+          <p class="descripcion">Caja de 10 unidades de palitos cremosos (frutilla o americana). Sabor a elección.</p>
+          <div class="precio">S/ 14.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20palitos%20cremosos%20x10" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palito-bombon.jpg" alt="Palito Bombón"><span class="badge-popular">FAVORITO</span></div>
+        <div class="producto-info">
+          <h3>Palito Bombón</h3>
+          <p class="descripcion">Palito de crema helada sabor chantilly cubierta de baño de repostería. El clásico bombón. 1 unidad.</p>
+          <div class="precio">S/ 2.50 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20palitos%20Bombón" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/palito-bombon.jpg" alt="Caja Palito Bombón"></div>
+        <div class="producto-info">
+          <h3>Caja Palito Bombón x 10</h3>
+          <p class="descripcion">Caja de 10 unidades de Palito Bombón. Crema chantilly cubierta de baño de repostería.</p>
+          <div class="precio">S/ 20.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Palito%20Bombón%20x10" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card">
-      <span class="producto-emoji">🍫</span>
-      <h3>Bombones</h3>
-      <p>Pequeños bocados de helado bañados en chocolate.</p>
+  </div>
+
+  <!-- BOMBONES -->
+  <div class="categoria-bloque" id="bombones">
+    <h2 class="categoria-titulo">🍫 Bombones Helados</h2>
+    <p class="categoria-desc">Bocaditos de helado bañados en chocolate. Ideales para compartir. Disponibles por unidad o en caja x8.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-escoces.jpg" alt="Bombón Escocés"><span class="badge-popular">FAVORITO</span></div>
+        <div class="producto-info">
+          <h3>Bombón Escocés</h3>
+          <p class="descripcion">Crema helada de chocolate y crema americana, con corazón de dulce de leche repostero, cubierto con baño de repostería y crocante de maní. 1 unidad.</p>
+          <div class="precio">S/ 5.00 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20Bombón%20Escocés" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-escoces.jpg" alt="Caja Bombón Escocés"></div>
+        <div class="producto-info">
+          <h3>Caja Bombón Escocés x 8</h3>
+          <p class="descripcion">Caja de 8 unidades de Bombón Escocés. Chocolate, crema americana, dulce de leche y crocante de maní.</p>
+          <div class="precio">S/ 28.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Bombón%20Escocés%20x8" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-suizo.jpg" alt="Bombón Suizo"></div>
+        <div class="producto-info">
+          <h3>Bombón Suizo</h3>
+          <p class="descripcion">Crema helada de dulce de leche y crema americana, cubierto con baño de repostería. 1 unidad.</p>
+          <div class="precio">S/ 4.50 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20Bombón%20Suizo" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-suizo.jpg" alt="Caja Bombón Suizo"></div>
+        <div class="producto-info">
+          <h3>Caja Bombón Suizo x 8</h3>
+          <p class="descripcion">Caja de 8 unidades de Bombón Suizo. Dulce de leche y crema americana con baño de repostería.</p>
+          <div class="precio">S/ 25.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Bombón%20Suizo%20x8" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-crocante.jpg" alt="Bombón Crocante"></div>
+        <div class="producto-info">
+          <h3>Bombón Crocante</h3>
+          <p class="descripcion">Crema helada de dulce de leche cubierto con chocolate con leche, baño de repostería y cereal inflado. 1 unidad.</p>
+          <div class="precio">S/ 4.00 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20Bombón%20Crocante" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/bombon-crocante.jpg" alt="Caja Bombón Crocante"></div>
+        <div class="producto-info">
+          <h3>Caja Bombón Crocante x 8</h3>
+          <p class="descripcion">Caja de 8 unidades de Bombón Crocante. Dulce de leche con chocolate con leche y cereal inflado.</p>
+          <div class="precio">S/ 22.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Bombón%20Crocante%20x8" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card">
-      <span class="producto-emoji">🍮</span>
-      <h3>Postres</h3>
-      <p>Combinaciones únicas con helado, salsas y toppings.</p>
+  </div>
+
+  <!-- POSTRES -->
+  <div class="categoria-bloque" id="postres">
+    <h2 class="categoria-titulo">🍮 Postres Helados</h2>
+    <p class="categoria-desc">Postres clásicos Grido para llevar y disfrutar en casa.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-crocantino.jpg" alt="Crocantino"><span class="badge-popular">CLÁSICO</span></div>
+        <div class="producto-info">
+          <h3>Crocantino</h3>
+          <p class="descripcion">Una deliciosa composición de crema helada de chocolate y dulce de leche, con corazón de dulce de leche repostero y delicado bañado de repostería. 10 porciones.</p>
+          <div class="precio">S/ 26.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20un%20Crocantino" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-delicia.jpg" alt="Delicia de Chocolate y Maní"></div>
+        <div class="producto-info">
+          <h3>Delicia de Chocolate y Maní</h3>
+          <p class="descripcion">Una exquisita combinación de helado de chocolate y crema americana, con trocitos de un excelente chocolate con maní, relleno de dulce de leche con cacao. 10 porciones.</p>
+          <div class="precio">S/ 26.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20Delicia%20de%20Chocolate%20y%20Maní" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-cassata.jpg" alt="Casatta"></div>
+        <div class="producto-info">
+          <h3>Casatta (unidad)</h3>
+          <p class="descripcion">Helado de crema sabor frutilla, chocolate y crema americana. 1 unidad.</p>
+          <div class="precio">S/ 4.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20Casatta" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-cassata.jpg" alt="Caja Casatta"></div>
+        <div class="producto-info">
+          <h3>Caja Casatta x 8</h3>
+          <p class="descripcion">Caja de 8 unidades de Casatta. Helado de crema sabor frutilla, chocolate y crema americana.</p>
+          <div class="precio">S/ 18.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Casatta%20x%208" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-almendrado.jpg" alt="Almendrado"></div>
+        <div class="producto-info">
+          <h3>Almendrado (unidad)</h3>
+          <p class="descripcion">Crema helada sabor americana cubierta con crocante de maní. 1 unidad.</p>
+          <div class="precio">S/ 4.00</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20un%20Almendrado" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-almendrado.jpg" alt="Caja Almendrado"></div>
+        <div class="producto-info">
+          <h3>Caja Almendrado x 8</h3>
+          <p class="descripcion">Caja de 8 unidades de Almendrado. Crema helada sabor americana cubierta con crocante de maní.</p>
+          <div class="precio">S/ 18.90</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%20Almendrado%20x%208" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card nuevo">
-      <span class="producto-emoji">🍪</span>
-      <h3>Alfajor Cookies & Cream</h3>
-      <p>¡Nuevo! Galleta de cacao rellena de helado.</p>
+  </div>
+
+  <!-- ESPECIALES (Productos) -->
+  <div class="categoria-bloque" id="especiales-prod">
+    <h2 class="categoria-titulo">⭐ Especiales</h2>
+    <p class="categoria-desc">Nuestras especialidades únicas: copas, batidos y el favorito de los pequeños.</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/06/lineasespeciales-supergridito.jpg" alt="Super Gridito"><span class="badge-popular">PARA NIÑOS</span></div>
+        <div class="producto-info">
+          <h3>Super Gridito</h3>
+          <p class="descripcion">Cucurucho especial con crema helada sabor chantilly elaborada con leche fortificada con vitaminas y minerales. Ideal para los más chicos.</p>
+          <div class="precio">S/ 5.50</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2016/09/capelinas-frutilla.jpg" alt="Capelina"></div>
+        <div class="producto-info">
+          <h3>Capelina</h3>
+          <p class="descripcion">Copa especial con sabores Frutal, Nuez, Fresa y Tramontana. Una experiencia única en cada cucharada.</p>
+          <div class="precio">S/ 15.00</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://argentina.gridohelado.com/wp-content/uploads/2025/03/Batido.jpg" alt="Grido Batido"></div>
+        <div class="producto-info">
+          <h3>Grido Batido</h3>
+          <p class="descripcion">Batido cremoso Grido con tu sabor favorito. Refrescante y delicioso, perfecto para llevar.</p>
+          <div class="precio">S/ 13.00</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen" style="background: white;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHvfQUE14pJVTO8C9kJL2fsK6Drdi9hkbenw&s" alt="Capuccino" style="mix-blend-mode: multiply; object-fit: contain; padding: 5px;"></div>
+        <div class="producto-info">
+          <h3>Capuccino</h3>
+          <p class="descripcion">Batido cremoso con una bola de helado sabor cappuccino, que puedes combinar con chocolate, vainilla o el mismo sabor cappuccino.</p>
+          <div class="precio">Consultar precio</div>
+          <div class="solo-local">🏪 Solo para consumo en local</div>
+        </div>
+      </div>
+
     </div>
-    <div class="producto-card nuevo">
-      <span class="producto-emoji">✨</span>
-      <h3>Palito Doble Crunch</h3>
-      <p>¡Nuevo! Doble capa crocante irresistible.</p>
+  </div>
+
+  <!-- LANZAMIENTOS -->
+  <div class="categoria-bloque" id="lanzamientos">
+    <h2 class="categoria-titulo">✨ Lanzamientos</h2>
+    <p class="categoria-desc">Las novedades de Grido. ¡Prueba los nuevos sabores y productos antes que nadie!</p>
+    <div class="grid-productos">
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQejgkEUkqDBiBxM7qLExx8C0ubfCRgfjH2Vw&s" alt="Chocolate Dubai"><span class="badge-nuevo">NUEVO</span></div>
+        <div class="producto-info">
+          <h3>Helado Chocolate Dubai</h3>
+          <p class="descripcion">El sabor viral que conquistó al mundo. Helado cremoso de chocolate con pistacho y kataifi crocante. ¡Una experiencia única!</p>
+          <div class="precio">A pedir por kilo</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20probar%20el%20helado%20Chocolate%20Dubai" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/bf8f951120570b82c8292f6b4d368189/70aa2a4db7f990373ca9c376323e3dea.jpeg" alt="Alfajor Cookies and Cream"><span class="badge-nuevo">NUEVO</span></div>
+        <div class="producto-info">
+          <h3>Alfajor Cookies & Cream</h3>
+          <p class="descripcion">¡Nuevo alfajor helado! Galleta de cacao rellena de helado sabor cookies and cream, bañado en chocolate. ¡Irresistible!</p>
+          <div class="precio">S/ 5.00 <small>por unidad</small></div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20probar%20el%20alfajor%20Cookies%20%26%20Cream" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/bf8f951120570b82c8292f6b4d368189/70aa2a4db7f990373ca9c376323e3dea.jpeg" alt="Caja Alfajor Cookies and Cream"><span class="badge-nuevo">NUEVO</span></div>
+        <div class="producto-info">
+          <h3>Caja Alfajor Cookies & Cream x 6</h3>
+          <p class="descripcion">Caja de 6 alfajores helados con base de galleta de chocolate, dulce de leche y helado cookies and cream.</p>
+          <div class="precio">S/ 29.50</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20una%20caja%20de%206%20alfajores" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-imagen"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJmdH91HkMo-XR5n2ZMV-r2gERtlJvY2YrHg&s" alt="Helado de Lúcuma"><span class="badge-popular">FAVORITO</span></div>
+        <div class="producto-info">
+          <h3>Helado de Lúcuma</h3>
+          <p class="descripcion">El sabor más amado por los peruanos. Cremoso, intenso y único. ¡Prueba nuestro helado de lúcuma!</p>
+          <div class="precio">A pedir por kilo</div>
+          <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20helado%20de%20lúcuma" target="_blank" class="btn-pedir">💬 Pedir por WhatsApp</a>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+</section>
+
+<!-- PROMOS DE MAYO -->
+<section class="promos" id="promos">
+  <div class="promos-titulo-decorado">
+    <h2 class="section-title">💕 Promos de Mayo</h2>
+    <p class="subtitulo-promo">Engríe a Mamá</p>
+  </div>
+
+  <div style="text-align: center;">
+    <span class="promo-precio-irresistible">¡PRECIO IRRESISTIBLE!</span>
+  </div>
+
+  <div class="grid-promos">
+
+    <div class="promo-card">
+      <div class="icono-promo"><img src="https://peru.gridohelado.com/wp-content/uploads/2023/09/Pote-cuarto-e1695663801591.png" alt="2 Cuartos de Kilo"></div>
+      <span class="etiqueta">A SOLO</span>
+      <h3>2 Cuartos de Kilo</h3>
+      <p class="porciones">2 sabores x pote</p>
+      <div class="precio-grande"><small>S/</small>17.<small>90</small></div>
+      <div class="ahorra">AHORRA S/ 2.10</div>
+      <br>
+      <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20la%20promo%20de%202%20cuartos%20de%20kilo%20a%20S%2F17.90" target="_blank" class="btn-promo">💬 Pedir promo</a>
+    </div>
+
+    <div class="promo-card">
+      <div class="icono-promo"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/ba1e2b6580a4951017536bf0bb1948d6/70aa2a4db7f990373ca9c376323e3dea.jpeg" alt="Bocadito de Fresa"></div>
+      <span class="etiqueta">A SOLO</span>
+      <h3>Bocadito de Fresa + Escocés</h3>
+      <p class="porciones">Bocaditos con doble chocolate</p>
+      <div class="precio-grande"><small>S/</small>20.<small>00</small></div>
+      <div class="ahorra">AHORRA S/ 1.00</div>
+      <br>
+      <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20la%20promo%20Bocadito%20Fresa%20%2B%20Escocés%20a%20S%2F20" target="_blank" class="btn-promo">💬 Pedir promo</a>
+    </div>
+
+    <div class="promo-card">
+      <div class="icono-promo"><img src="https://peru.gridohelado.com/wp-content/uploads/2016/06/postres-delicia.jpg" alt="Delicia de Chocolate y Maní"></div>
+      <span class="etiqueta">A SOLO</span>
+      <h3>1 Delicia</h3>
+      <p class="porciones">10 porciones</p>
+      <div class="precio-grande"><small>S/</small>24.<small>90</small></div>
+      <div class="ahorra">AHORRA S/ 2.00</div>
+      <br>
+      <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20la%20promo%20de%201%20Delicia%20a%20S%2F24.90" target="_blank" class="btn-promo">💬 Pedir promo</a>
+    </div>
+
+    <div class="promo-card">
+      <div class="icono-promo"><img src="https://cdn.cuponidad.pe/images/Deals/heladode2sabores-170.webp" alt="1 Kilo"></div>
+      <span class="etiqueta">A SOLO</span>
+      <h3>1 Kilo</h3>
+      <p class="porciones">4 sabores a elección</p>
+      <div class="precio-grande"><small>S/</small>29.<small>90</small></div>
+      <div class="ahorra">¡PRECIO ESPECIAL!</div>
+      <br>
+      <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20la%20promo%20de%201%20kilo%20a%20S%2F29.90" target="_blank" class="btn-promo">💬 Pedir promo</a>
+    </div>
+
+    <div class="promo-card">
+      <div class="icono-promo"><img src="https://peru.gridohelado.com/wp-content/uploads/2019/10/Torta-Grido360X360.jpg" alt="Torta Helada"></div>
+      <span class="etiqueta">A SOLO</span>
+      <h3>1 Torta Helada</h3>
+      <p class="porciones">Sabor a elección</p>
+      <div class="precio-grande"><small>S/</small>33.<small>00</small></div>
+      <div class="ahorra">¡OFERTA ESPECIAL!</div>
+      <br>
+      <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20reservar%20la%20torta%20helada%20a%20S%2F33" target="_blank" class="btn-promo">💬 Reservar</a>
+    </div>
+
+  </div>
+
+  <div class="promos-vigencia">
+    ⏰ Promociones válidas hasta el <strong>31 de Mayo</strong> solo en la sede Grido Viñedos<br>
+    Para consumo en salón o pedidos por WhatsApp
   </div>
 </section>
 
 <!-- SABORES -->
 <section class="sabores" id="sabores">
   <h2 class="section-title">Nuestros Sabores</h2>
-  <p class="section-subtitle">Elegí entre nuestras categorías de sabores favoritos.</p>
+  <p class="section-subtitle">Más de 30 sabores para elegir. ¡Combina tus favoritos!</p>
 
   <div class="sabores-tabs">
     <button class="tab active" onclick="mostrarSabores('cremas', this)">Cremas</button>
@@ -662,116 +1486,207 @@
     <button class="tab" onclick="mostrarSabores('frutas-agua', this)">Frutas al Agua</button>
     <button class="tab" onclick="mostrarSabores('chocolates', this)">Chocolates</button>
     <button class="tab" onclick="mostrarSabores('especiales', this)">Especiales</button>
-    <button class="tab" onclick="mostrarSabores('manjar', this)">Manjar Blanco</button>
+    <button class="tab" onclick="mostrarSabores('manjar', this)">Dulce de Leche</button>
   </div>
 
   <div class="sabores-lista">
+
+    <!-- CREMAS -->
     <div class="grupo-sabores active" id="cremas">
-      <div class="sabor-item"><span class="emoji">🍦</span><span class="nombre">Vainilla</span></div>
-      <div class="sabor-item"><span class="emoji">🍫</span><span class="nombre">Crema Granizada</span></div>
-      <div class="sabor-item"><span class="emoji">🥛</span><span class="nombre">Crema Americana</span></div>
-      <div class="sabor-item"><span class="emoji">🌿</span><span class="nombre">Menta Granizada</span></div>
-      <div class="sabor-item"><span class="emoji">⭐</span><span class="nombre">Super Gridito</span></div>
-      <div class="sabor-item"><span class="emoji">🥃</span><span class="nombre">Crema Rusa</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Vainilla</span>
+        <p class="descripcion">Crema helada de vainilla. El clásico de toda la vida.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Crema Granizada</span>
+        <p class="descripcion">Crema helada sabor chantilly con granizado (trozos) de chocolate semiamargo.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Crema Americana</span>
+        <p class="descripcion">Helado de Crema Americana (Chantilly). Suave, ligero y delicioso.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Menta Granizada</span>
+        <p class="descripcion">Crema helada sabor menta con granizado (trozos) de chocolate semiamargo.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Super Gridito</span>
+        <p class="descripcion">Crema helada sabor chantilly elaborada con leche fortificada con vitaminas y minerales.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Crema Rusa</span>
+        <p class="descripcion">Crema helada de nueces con nueces partidas. Sabor intenso y único.</p>
+      </div>
     </div>
 
+    <!-- FRUTAS A LA CREMA -->
     <div class="grupo-sabores" id="frutas-crema">
-      <div class="sabor-item"><span class="emoji">🍑</span><span class="nombre">Durazno a la Crema</span></div>
-      <div class="sabor-item"><span class="emoji">🍍</span><span class="nombre">Piña a la Crema</span></div>
-      <div class="sabor-item"><span class="emoji">🍌</span><span class="nombre">Banana con Manjar</span></div>
-      <div class="sabor-item"><span class="emoji">🍒</span><span class="nombre">Cereza</span></div>
-      <div class="sabor-item"><span class="emoji">🍓</span><span class="nombre">Fresa a la Crema</span></div>
-      <div class="sabor-item"><span class="emoji">🥃</span><span class="nombre">Quinotos al Whisky</span></div>
-      <div class="sabor-item"><span class="emoji">🟡</span><span class="nombre">Lúcuma</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Durazno a la Crema</span>
+        <p class="descripcion">Crema helada con trozos de durazno en almíbar. Fresco y dulce.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Piña a la Crema</span>
+        <p class="descripcion">Crema helada con trozos de piña. Tropical y refrescante.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Banana con Dulce de Leche</span>
+        <p class="descripcion">Crema helada de banana con un toque de dulce de leche. Una combinación clásica.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Cereza</span>
+        <p class="descripcion">Crema helada con trozos de cereza al licor. Elegante y delicioso.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Fresa a la Crema</span>
+        <p class="descripcion">Crema helada con trozos de fresa natural. Suave y dulce, el favorito de muchos.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Quinotos al Whisky</span>
+        <p class="descripcion">Crema helada con quinotos al licor. Para paladares sofisticados.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Lúcuma</span>
+        <p class="descripcion">El sabor más amado por los peruanos. Cremoso, intenso y con la dulzura natural de la lúcuma.</p>
+      </div>
     </div>
 
+    <!-- FRUTAS AL AGUA -->
     <div class="grupo-sabores" id="frutas-agua">
-      <div class="sabor-item"><span class="emoji">🍋</span><span class="nombre">Limón</span></div>
-      <div class="sabor-item"><span class="emoji">🍊</span><span class="nombre">Naranja</span></div>
-      <div class="sabor-item"><span class="emoji">🍓</span><span class="nombre">Fresa al Agua</span></div>
-      <div class="sabor-item"><span class="emoji">💛</span><span class="nombre">Maracuyá</span></div>
-      <div class="sabor-item"><span class="emoji">🫐</span><span class="nombre">Frutos Rojos</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Limón</span>
+        <p class="descripcion">Helado de limón al agua. Refrescante, ácido y perfecto para el calor.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Naranja</span>
+        <p class="descripcion">Helado de naranja al agua. Dulce, cítrico y refrescante.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Fresa al Agua</span>
+        <p class="descripcion">Helado de fresa al agua. Sabor frutal y muy refrescante.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Maracuyá</span>
+        <p class="descripcion">Helado de maracuyá al agua. Tropical, intenso y ácido.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Frutos Rojos</span>
+        <p class="descripcion">Helado al agua con mix de frutos rojos. Antioxidante y delicioso.</p>
+      </div>
     </div>
 
+    <!-- CHOCOLATES -->
     <div class="grupo-sabores" id="chocolates">
-      <div class="sabor-item"><span class="emoji">🍫</span><span class="nombre">Chocolate</span></div>
-      <div class="sabor-item"><span class="emoji">🌰</span><span class="nombre">Chocolate con Almendras</span></div>
-      <div class="sabor-item"><span class="emoji">🤍</span><span class="nombre">Chocolate Blanco</span></div>
-      <div class="sabor-item"><span class="emoji">🍫</span><span class="nombre">Chocolate Suizo</span></div>
-      <div class="sabor-item"><span class="emoji">🥜</span><span class="nombre">Chocolate Maní Crunch</span></div>
-      <div class="sabor-item"><span class="emoji">🍪</span><span class="nombre">Choco Blanco Oreo</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Chocolate</span>
+        <p class="descripcion">Crema helada de chocolate semi amargo. Intenso y clásico.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Chocolate con Almendras</span>
+        <p class="descripcion">Crema helada de chocolate semi amargo con almendras partidas garrapiñadas.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Chocolate Blanco</span>
+        <p class="descripcion">Crema helada de chocolate blanco con trocitos de chocolate blanco.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Chocolate Suizo</span>
+        <p class="descripcion">Crema helada de chocolate sabor toffee con dulce de leche repostero.</p>
+      </div>
+      <div class="sabor-item nuevo">
+        <span class="nombre">Chocolate Dubai</span>
+        <p class="descripcion">El sabor viral del momento. Crema helada de chocolate con pistacho y kataifi crocante. ¡Una experiencia única!</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Choco Blanco Oreo</span>
+        <p class="descripcion">Crema helada de chocolate blanco, con salsa de dulce de leche y trocitos de galletitas Oreo.</p>
+      </div>
     </div>
 
+    <!-- ESPECIALES -->
     <div class="grupo-sabores" id="especiales">
-      <div class="sabor-item"><span class="emoji">🍮</span><span class="nombre">Crema Flan</span></div>
-      <div class="sabor-item"><span class="emoji">🥚</span><span class="nombre">Sambayón</span></div>
-      <div class="sabor-item"><span class="emoji">☕</span><span class="nombre">Tiramisú</span></div>
-      <div class="sabor-item"><span class="emoji">🍪</span><span class="nombre">Crema Cookie</span></div>
-      <div class="sabor-item"><span class="emoji">🍯</span><span class="nombre">Grido Marroc</span></div>
-      <div class="sabor-item"><span class="emoji">🫐</span><span class="nombre">Mascarpone Frutos del Bosque</span></div>
-      <div class="sabor-item"><span class="emoji">☕</span><span class="nombre">Cappuccino Granizado</span></div>
-      <div class="sabor-item"><span class="emoji">⛰️</span><span class="nombre">Tramontana</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Crema Flan</span>
+        <p class="descripcion">Crema helada con sabor a flan casero. Suave y reconfortante.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Sambayón</span>
+        <p class="descripcion">Crema helada de sambayón. Clásico italiano con un toque de licor.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Tiramisú</span>
+        <p class="descripcion">Crema helada que recrea el clásico postre italiano con café y mascarpone.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Crema Cookie</span>
+        <p class="descripcion">Crema helada con trozos de galletas de chocolate. Crocante y delicioso.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Grido Marroc</span>
+        <p class="descripcion">Crema helada inspirada en el chocolate Marroc. Sabor a chocolate con maní.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Mascarpone Frutos del Bosque</span>
+        <p class="descripcion">Crema helada de mascarpone con frutos del bosque. Elegante y frutal.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Cappuccino Granizado</span>
+        <p class="descripcion">Crema helada de cappuccino con trozos de chocolate. Para los amantes del café.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Tramontana</span>
+        <p class="descripcion">Crema helada con dulce de leche, chocolate y almendras. Una combinación irresistible.</p>
+      </div>
     </div>
 
+    <!-- DULCE DE LECHE -->
     <div class="grupo-sabores" id="manjar">
-      <div class="sabor-item"><span class="emoji">🍯</span><span class="nombre">Manjar Blanco</span></div>
-      <div class="sabor-item"><span class="emoji">🌰</span><span class="nombre">Manjar con Nuez</span></div>
-      <div class="sabor-item"><span class="emoji">🍫</span><span class="nombre">Manjar Granizado</span></div>
-      <div class="sabor-item"><span class="emoji">🟫</span><span class="nombre">Manjar con Brownie</span></div>
-      <div class="sabor-item"><span class="emoji">⭐</span><span class="nombre">Super Manjar Blanco</span></div>
+      <div class="sabor-item">
+        <span class="nombre">Dulce de Leche</span>
+        <p class="descripcion">Crema helada de dulce de leche. El sabor más amado de todos los tiempos.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Dulce de Leche con Nuez</span>
+        <p class="descripcion">Crema helada de dulce de leche con trozos de nueces. Crocante y dulce.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Dulce de Leche Granizado</span>
+        <p class="descripcion">Crema helada de dulce de leche con trozos de chocolate semiamargo.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Dulce de Leche con Brownie</span>
+        <p class="descripcion">Crema helada de dulce de leche con trozos de brownie de chocolate.</p>
+      </div>
+      <div class="sabor-item">
+        <span class="nombre">Super Dulce de Leche</span>
+        <p class="descripcion">Versión potenciada del dulce de leche clásico. Más intenso, más cremoso.</p>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- PROMOS -->
-<section class="promos" id="promos">
-  <h2 class="section-title">Promos del Mes</h2>
-  <p class="section-subtitle">Próximamente publicaremos nuestras mejores ofertas. ¡Seguinos para enterarte primero!</p>
-  <div class="grid-promos">
-    <div class="promo-card">
-      <span class="etiqueta">🔥 Próximamente</span>
-      <h3>Kilo Familiar</h3>
-      <p>1 kg de helado a elección. Ideal para compartir en familia.</p>
-      <div class="precio-grande">S/ --</div>
-    </div>
-    <div class="promo-card">
-      <span class="etiqueta">⭐ Próximamente</span>
-      <h3>Combo Pareja</h3>
-      <p>Medio kilo + 2 conos Tentación.</p>
-      <div class="precio-grande">S/ --</div>
-    </div>
-    <div class="promo-card">
-      <span class="etiqueta">🎉 Próximamente</span>
-      <h3>Postre del Día</h3>
-      <p>Postre especial con helado, salsa y toppings.</p>
-      <div class="precio-grande">S/ --</div>
-    </div>
   </div>
 </section>
 
 <!-- PEDIDOS -->
-<section class="pedidos" id="pedidos">
+<section class="pedidos">
   <div class="pedidos-box">
     <div class="icono">📱</div>
-    <h2 class="section-title" style="margin-bottom: 1rem;">Pedí por WhatsApp</h2>
-    <p>Hacé tu pedido en segundos y te lo preparamos enseguida. Consultá sabores, promos o coordiná tu delivery.</p>
+    <h2 class="section-title" style="margin-bottom: 1rem;">Pide por WhatsApp</h2>
+    <p>Haz tu pedido en segundos. Consulta sabores, promos, precios actualizados o coordina delivery.</p>
     <a href="https://wa.me/51942760895?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20Grido%20Viñedos" target="_blank" class="btn btn-whatsapp">
       💬 Pedir ahora por WhatsApp
     </a>
-  </div>
-</section>
 
-<!-- GALERIA -->
-<section class="galeria" id="galeria">
-  <h2 class="section-title">Nuestro Local</h2>
-  <p class="section-subtitle">Un vistazo a Grido Viñedos.</p>
-  <div class="grid-galeria">
-    <div class="galeria-item">🍦</div>
-    <div class="galeria-item">🍨</div>
-    <div class="galeria-item">🎂</div>
-    <div class="galeria-item">🍫</div>
-    <div class="galeria-item">🍮</div>
-    <div class="galeria-item">🍪</div>
+    <div class="delivery-apps">
+      <div class="delivery-apps-titulo">O pídelo desde tu app favorita</div>
+      <div class="delivery-grid">
+        <a href="https://www.rappi.com.pe/restaurantes/80503-grido" target="_blank" class="btn-delivery btn-rappi">
+          <span class="btn-delivery-icon">🛵</span> Pedir por Rappi
+        </a>
+        <a href="https://www.pedidosya.com.pe/restaurantes/lima/grido-vinedos-3562e9c7-9d16-4a72-aba5-07a99da417f1-menu" target="_blank" class="btn-delivery btn-pedidosya">
+          <span class="btn-delivery-icon">🛵</span> Pedir por PedidosYa
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -779,7 +1694,7 @@
 <section class="ubicacion" id="ubicacion">
   <div class="ubicacion-grid">
     <div class="ubicacion-info">
-      <h2>Visitanos</h2>
+      <h2>Visítanos</h2>
       <div class="info-item">
         <div class="icono">📍</div>
         <div>
@@ -808,12 +1723,22 @@
           <p>gridovinedos@gmail.com</p>
         </div>
       </div>
+      <div class="info-item">
+        <div class="icono">📱</div>
+        <div>
+          <h4>Síguenos en redes</h4>
+          <p>
+            <a href="https://www.instagram.com/gridovinedos/" target="_blank" style="color: var(--rojo-grido); text-decoration: none; font-weight: 700; margin-right: 0.8rem;">📷 Instagram</a>
+            <a href="https://www.tiktok.com/@gridovinedos" target="_blank" style="color: var(--azul-grido); text-decoration: none; font-weight: 700;">🎵 TikTok</a>
+          </p>
+        </div>
+      </div>
     </div>
     <div class="mapa-box">
       <div class="icono-grande">🗺️</div>
-      <h3>Encontranos fácil</h3>
-      <p>Estamos esperándote con los mejores helados Grido.</p>
-      <a href="https://maps.google.com/?q=Calle+Teniente+Jose+Bolognesi+Coloma+107+Lima" target="_blank" class="btn btn-primary">Ver en Google Maps</a>
+      <h3>Encuéntranos fácil</h3>
+      <p>Te estamos esperando con los mejores helados Grido.</p>
+      <a href="https://maps.app.goo.gl/nUttPkbh6S9uRuP39" target="_blank" class="btn btn-primary">Ver en Google Maps</a>
     </div>
   </div>
 </section>
@@ -828,18 +1753,20 @@
   <div class="nombre-footer">grido <span>VIÑEDOS</span></div>
   <p style="color: rgba(255,255,255,0.8);">Más momentos felices · Heladería Grido</p>
   <div class="social">
-    <a href="#" title="Instagram">📷</a>
-    <a href="#" title="Facebook">📘</a>
+    <a href="https://www.instagram.com/gridovinedos/" target="_blank" title="Instagram">📷</a>
+    <a href="https://www.tiktok.com/@gridovinedos" target="_blank" title="TikTok">🎵</a>
     <a href="https://wa.me/51942760895" title="WhatsApp">💬</a>
+    <a href="https://www.rappi.com.pe/restaurantes/80503-grido" target="_blank" title="Pedir por Rappi">🛵</a>
+    <a href="https://www.pedidosya.com.pe/restaurantes/lima/grido-vinedos-3562e9c7-9d16-4a72-aba5-07a99da417f1-menu" target="_blank" title="Pedir por PedidosYa">🍽️</a>
   </div>
   <div class="copy">
-    © 2026 Grido Viñedos · Franquicia oficial Grido<br>
-    <small style="opacity: 0.6;">Sitio web no oficial. Grido® es marca registrada de Mundo Helado S.A.</small>
+    © 2026 Grido Viñedos · Franquicia Grido<br>
+    <small style="opacity: 0.6;">Sitio web no oficial. Grido® es marca registrada de Mundo Helado S.A.<br>Precios referenciales sujetos a cambios. Consulta precio actual por WhatsApp.</small>
   </div>
 </footer>
 
 <!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/51942760895?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20Grido%20Viñedos" target="_blank" class="whatsapp-float" title="Pedí por WhatsApp">💬</a>
+<a href="https://wa.me/51942760895?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20Grido%20Viñedos" target="_blank" class="whatsapp-float" title="Pide por WhatsApp">💬</a>
 
 <script>
   // Menú móvil
@@ -849,10 +1776,19 @@
     });
   });
 
+  // Cambiar categoría de productos
+  function mostrarCategoria(id, btn) {
+    document.querySelectorAll('.categoria-bloque').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('productos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   // Tabs de sabores
   function mostrarSabores(id, btn) {
     document.querySelectorAll('.grupo-sabores').forEach(g => g.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sabores .tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
   }
