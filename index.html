@@ -402,36 +402,43 @@
   }
   .badge-popular { background: var(--amarillo); color: var(--azul-oscuro); }
 
-  /* PROMOS - Estilo Junio Azul Mundial */
+  /* PROMOS - Estilo Junio Mundial / Mes del Padre */
   .promos {
-    background: linear-gradient(135deg, #FFE5EC 0%, #FFB6C1 50%, #FF8FA3 100%);
-    color: var(--texto);
+    background: linear-gradient(135deg, #0A2540 0%, #134385 50%, #1E5BA8 100%);
+    color: white;
     position: relative;
     overflow: hidden;
   }
   .promos::before {
-    content: '❤️';
+    content: '⚽';
     position: absolute;
     font-size: 8rem;
     top: 5%; left: 3%;
     opacity: 0.15;
     transform: rotate(-15deg);
+    animation: float 6s ease-in-out infinite;
   }
   .promos::after {
-    content: '❤️';
+    content: '⚽';
     position: absolute;
     font-size: 10rem;
     bottom: 5%; right: 3%;
     opacity: 0.15;
     transform: rotate(20deg);
+    animation: float 8s ease-in-out infinite reverse;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-20px) rotate(-10deg); }
   }
   .promos .section-title {
-    color: var(--rosa-oscuro);
+    color: white;
     font-size: clamp(2.5rem, 5vw, 4rem);
-    text-shadow: 2px 2px 0 white;
+    text-shadow: 3px 3px 0 #C0C0C0, 4px 4px 8px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
   }
   .promos .section-subtitle {
-    color: var(--azul-oscuro);
+    color: #FFD700;
     font-weight: 700;
   }
   .promos-titulo-decorado {
@@ -443,10 +450,11 @@
   .promos-titulo-decorado .subtitulo-promo {
     font-family: 'Fredoka', sans-serif;
     font-style: italic;
-    color: var(--rosa-oscuro);
+    color: #FFD700;
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
   .grid-promos {
     display: grid;
@@ -466,20 +474,25 @@
     transition: transform 0.3s;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    border: 3px solid transparent;
   }
   .promo-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 6px;
-    background: linear-gradient(90deg, var(--rosa-oscuro), var(--rojo-grido));
+    background: linear-gradient(90deg, #134385, #FFD700, #134385);
   }
-  .promo-card:hover { transform: scale(1.03); }
+  .promo-card:hover {
+    transform: scale(1.03) translateY(-5px);
+    border-color: #FFD700;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+  }
   .promo-card .icono-promo { font-size: 3.5rem; margin-bottom: 0.5rem; height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .promo-card .icono-promo img { max-height: 90px; max-width: 100%; object-fit: contain; border-radius: 10px; }
   .promo-card .etiqueta {
-    background: var(--rosa-oscuro);
+    background: linear-gradient(135deg, #134385, #1E5BA8);
     color: white;
     display: inline-block;
     padding: 0.3rem 1rem;
@@ -489,9 +502,10 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(19, 67, 133, 0.4);
   }
   .promo-card h3 {
-    color: var(--azul-grido);
+    color: #0A2540;
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
   }
@@ -505,7 +519,7 @@
     font-family: 'Fredoka', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--rosa-oscuro);
+    color: #134385;
     margin-bottom: 0.3rem;
     line-height: 1;
   }
@@ -514,7 +528,7 @@
     vertical-align: top;
   }
   .promo-card .ahorra {
-    background: var(--rojo-grido);
+    background: linear-gradient(135deg, #E63946, #C1121F);
     color: white;
     display: inline-block;
     padding: 0.2rem 0.8rem;
@@ -522,6 +536,7 @@
     font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 1.2rem;
+    box-shadow: 0 2px 6px rgba(230, 57, 70, 0.3);
   }
   .promo-card .btn-promo {
     background: #25D366;
@@ -540,8 +555,8 @@
     transform: scale(1.05);
   }
   .promo-precio-irresistible {
-    background: white;
-    color: var(--rosa-oscuro);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #0A2540;
     padding: 1rem 2rem;
     border-radius: 50px;
     display: inline-block;
@@ -549,21 +564,23 @@
     font-weight: 700;
     font-size: 1.3rem;
     margin: 2rem auto;
-    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
     transform: rotate(-3deg);
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
   }
   .promos-vigencia {
-    background: white;
-    color: var(--rosa-oscuro);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    color: #0A2540;
     padding: 1.2rem 2rem;
     border-radius: 15px;
     max-width: 700px;
     margin: 3rem auto 0;
     text-align: center;
     font-weight: 700;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     position: relative;
     z-index: 2;
+    border: 2px solid #FFD700;
   }
 
   /* SABORES */
